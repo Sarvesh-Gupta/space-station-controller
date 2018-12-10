@@ -1,4 +1,5 @@
 
+using System;
 using Prctc.SpaceStationController.Core;
 using Prctc.SpaceStationController.Domain.Model;
 
@@ -16,11 +17,28 @@ namespace Prctc.SpaceStationController.Domain.Commands
         }
         public void Execute()
         {
-            bool canDock = _station.CanShuttleDock(_shuttle);
+            bool canDock = CanShuttleDock();
             if (canDock)
             {
-                _shuttle.RequestDock(_station);
+               DockToStation();
             }
+        }
+
+        private bool CanShuttleDock()
+        {
+            var stationShuttles = _station.Shuttles;
+            if (!stationShuttles.Contains(_shuttle)
+                && stationShuttles.Count < _station.MaxShuttlesAllowed)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void DockToStation()
+        {
+             _station.DockShuttle(_shuttle);   
         }
     }
 }

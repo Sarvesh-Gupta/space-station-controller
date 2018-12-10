@@ -13,17 +13,7 @@ namespace Prctc.SpaceStationController.Domain.Model
         public ICollection<Shuttle> Shuttles { get; }
 
         public int MaxShuttlesAllowed { get; }
-        internal bool CanShuttleDock(Shuttle shuttle)
-        {
-            if (!Shuttles.Contains(shuttle)
-                && Shuttles.Count < MaxShuttlesAllowed)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
+       
         internal void DockShuttle(Shuttle shuttle)
         {
             Shuttles.Add(shuttle);
