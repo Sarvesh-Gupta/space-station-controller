@@ -1,3 +1,4 @@
+using System;
 using Prctc.SpaceStationController.Core;
 using Prctc.SpaceStationController.Domain.Model;
 
@@ -9,7 +10,7 @@ namespace Prctc.SpaceStationController.Domain.Commands
         {
             
         }
-        public void Execute()
+        public void Execute(Action<CommandResult> onSuccess, Action<CommandResult> onFail)
         {
             throw new System.NotImplementedException();
         }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prctc.SpaceStationControlle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prctc.SpaceStationController.Core", "src\Prctc.SpaceStationController.Core\Prctc.SpaceStationController.Core.csproj", "{71E5DE5B-CFFA-41DF-829C-BD5423B9474E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prctc.SpaceStationController.Client.Console", "src\Prctc.SpaceStationController.Client.Console\Prctc.SpaceStationController.Client.Console.csproj", "{44F15814-836F-461B-B693-F6B346BBF054}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,9 +48,22 @@ Global
 		{71E5DE5B-CFFA-41DF-829C-BD5423B9474E}.Release|x64.Build.0 = Release|Any CPU
 		{71E5DE5B-CFFA-41DF-829C-BD5423B9474E}.Release|x86.ActiveCfg = Release|Any CPU
 		{71E5DE5B-CFFA-41DF-829C-BD5423B9474E}.Release|x86.Build.0 = Release|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Debug|x64.Build.0 = Debug|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Debug|x86.Build.0 = Debug|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Release|x64.ActiveCfg = Release|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Release|x64.Build.0 = Release|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Release|x86.ActiveCfg = Release|Any CPU
+		{44F15814-836F-461B-B693-F6B346BBF054}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1C566EB1-5030-401E-ACB8-048B3A10595F} = {4DB0EEA8-8EF0-43E1-B909-932C792F7960}
 		{71E5DE5B-CFFA-41DF-829C-BD5423B9474E} = {4DB0EEA8-8EF0-43E1-B909-932C792F7960}
+		{44F15814-836F-461B-B693-F6B346BBF054} = {4DB0EEA8-8EF0-43E1-B909-932C792F7960}
 	EndGlobalSection
 EndGlobal

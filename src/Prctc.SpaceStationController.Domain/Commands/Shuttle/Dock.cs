@@ -1,7 +1,9 @@
 
 using System;
+using System.Collections.Generic;
 using Prctc.SpaceStationController.Core;
 using Prctc.SpaceStationController.Domain.Model;
+using Prctc.SpaceStationController.Domain.Rules;
 
 namespace Prctc.SpaceStationController.Domain.Commands
 {
@@ -9,36 +11,26 @@ namespace Prctc.SpaceStationController.Domain.Commands
     {
         private readonly Station _station;
         private readonly Shuttle _shuttle;
+        private readonly IRule _validationRule;
 
-        public Dock(Station station, Shuttle shuttle)
+        public Dock(Station station, Shuttle shuttle, IRule validationRule)
         {
             _station = station;
             _shuttle = shuttle;
+            _validationRule = validationRule;
         }
-        public void Execute()
+        public void Execute(Action<CommandResult> onSuccess, Action<CommandResult> onFail)
         {
-            bool canDock = CanShuttleDock();
-            if (canDock)
+            var (iValid, failureCode) = _validationRule.Validate(_station);
+
+            if (!iValid)
             {
-               DockToStation();
+                onFail(new CommandResult { IsSuccess = false, Message = failureCode });
+                return;
             }
-        }
-
-        private bool CanShuttleDock()
-        {
-            var stationShuttles = _station.Shuttles;
-            if (!stationShuttles.Contains(_shuttle)
-                && stationShuttles.Count < _station.MaxShuttlesAllowed)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private void DockToStation()
-        {
-             _station.DockShuttle(_shuttle);   
+            
+            _station.DockShuttle(_shuttle);
+            onSuccess(new CommandResult { IsSuccess = true });
         }
     }
 }

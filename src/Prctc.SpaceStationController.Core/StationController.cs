@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 
 namespace Prctc.SpaceStationController.Core
@@ -11,12 +12,12 @@ namespace Prctc.SpaceStationController.Core
             _commands = new ConcurrentQueue<ICommand>();
         }
 
-        public void ExecuteCommand(ICommand command)
+        public void ExecuteCommand(ICommand command, Action<CommandResult> onSuccess, Action<CommandResult> onFail)
         {
             _commands.Enqueue(command);
             ICommand commandToExecute;
             _commands.TryDequeue(out commandToExecute);
-            commandToExecute.Execute();
+            commandToExecute.Execute(onSuccess, onFail);
         }
     }
 }

@@ -5,19 +5,15 @@ namespace Prctc.SpaceStationController.Domain.Model
 {
     public class Station
     {
-        public Station(int maxShuttlesAllowed)
+        public Station()
         {
-            Shuttles = new List<Shuttle>();
-            MaxShuttlesAllowed = maxShuttlesAllowed;
+            Shuttles = new List<IShuttle>();
         }
-        public ICollection<Shuttle> Shuttles { get; }
+        internal ICollection<IShuttle> Shuttles { get; }
 
-        public int MaxShuttlesAllowed { get; }
-       
-        internal void DockShuttle(Shuttle shuttle)
+        internal void DockShuttle(IShuttle shuttle)
         {
             Shuttles.Add(shuttle);
         }
-
     }
 }
