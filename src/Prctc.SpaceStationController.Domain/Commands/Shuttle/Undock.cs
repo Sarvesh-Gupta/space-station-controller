@@ -6,13 +6,17 @@ namespace Prctc.SpaceStationController.Domain.Commands
 {
     public class Undock : ICommand
     {
-        public Undock(Shuttle shuttle)
+        private readonly Station _station;
+        private readonly Shuttle _shuttle;
+        public Undock(Station station, Shuttle shuttle)
         {
-            
+            _station = station;
+            _shuttle = shuttle;
         }
         public void Execute(Action<CommandResult> onSuccess, Action<CommandResult> onFail)
         {
-            throw new System.NotImplementedException();
+            _station.UndockShuttle(_shuttle);
+            onSuccess(new CommandResult { IsSuccess = true, ShuttleName = $"{_shuttle.Name}({_shuttle.Id})" });
         }
     }
 }

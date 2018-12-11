@@ -7,5 +7,7 @@ namespace Prctc.SpaceStationController.Core
          public string Code { get; set; }
 
          public string Message { get; set; }
+
+         public string ShuttleName { get; set; }
     }
 }

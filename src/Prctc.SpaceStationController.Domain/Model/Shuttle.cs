@@ -5,14 +5,12 @@ namespace Prctc.SpaceStationController.Domain.Model
 {
     public class Shuttle : IShuttle
     {
-        public void DockingSuccessful(CommandResult result)
+        public Shuttle(int id, string name)
         {
-            Console.WriteLine($"Success!!, I got docked.");
+            Name = name;
+            Id = id;
         }
-
-         public void DockingFailed(CommandResult result)
-        {
-            Console.WriteLine($"Failure!!, I could not be docked. Reason>>> {result.Message}");
-        }
+        public int Id { get; private set; }
+        public string Name { get; private set; }
     }
 }

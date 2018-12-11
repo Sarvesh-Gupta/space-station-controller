@@ -15,5 +15,10 @@ namespace Prctc.SpaceStationController.Domain.Model
         {
             Shuttles.Add(shuttle);
         }
+
+        internal void UndockShuttle(Shuttle shuttle)
+        {
+            Shuttles.Remove(shuttle);
+        }
     }
 }

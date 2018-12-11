@@ -25,12 +25,12 @@ namespace Prctc.SpaceStationController.Domain.Commands
 
             if (!iValid)
             {
-                onFail(new CommandResult { IsSuccess = false, Message = failureCode });
+                onFail(new CommandResult { IsSuccess = false, Message = failureCode, ShuttleName = $"{_shuttle.Name}({_shuttle.Id})" });
                 return;
             }
-            
+
             _station.DockShuttle(_shuttle);
-            onSuccess(new CommandResult { IsSuccess = true });
+            onSuccess(new CommandResult { IsSuccess = true, ShuttleName = $"{_shuttle.Name}({_shuttle.Id})" });
         }
     }
 }
