@@ -1,36 +1,40 @@
-
-using System;
-using System.Collections.Generic;
-using Prctc.SpaceStationController.Core;
-using Prctc.SpaceStationController.Domain.Model;
-using Prctc.SpaceStationController.Domain.Rules;
-
 namespace Prctc.SpaceStationController.Domain.Commands
 {
+    using System;
+
+    using Prctc.SpaceStationController.Core;
+    using Prctc.SpaceStationController.Domain.Model;
+    using Prctc.SpaceStationController.Domain.Rules;
+
     public class Dock : ICommand
     {
         private readonly Station _station;
         private readonly Shuttle _shuttle;
         private readonly IRule _validationRule;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Dock"/> class.
+        /// </summary>
+        /// <param name="station">The receiver.</param>
+        /// <param name="shuttle">The param for receiver.</param>
+        /// <param name="validationRule">The validation rule.</param>
         public Dock(Station station, Shuttle shuttle, IRule validationRule)
         {
             _station = station;
             _shuttle = shuttle;
             _validationRule = validationRule;
         }
+
+        /// <summary>
+        /// Executes the specified on success.
+        /// </summary>
+        /// <param name="onSuccess">The on success.</param>
+        /// <param name="onFail">The on fail.</param>
         public void Execute(Action<CommandResult> onSuccess, Action<CommandResult> onFail)
         {
-            var (iValid, failureCode) = _validationRule.Validate(_station);
-
-            if (!iValid)
-            {
-                onFail(new CommandResult { IsSuccess = false, Message = failureCode, ShuttleName = $"{_shuttle.Name}({_shuttle.Id})" });
-                return;
-            }
-
-            _station.DockShuttle(_shuttle);
-            onSuccess(new CommandResult { IsSuccess = true, ShuttleName = $"{_shuttle.Name}({_shuttle.Id})" });
+            _station
+                .WithDockingRule(_validationRule)
+                .DockShuttle(_shuttle, onSuccess, onFail);
         }
     }
 }
